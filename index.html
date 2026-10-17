@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumIA - Optimiza tu CV para Filtros ATS por $1.000 ARS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Protección básica anti-selección y copia */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .blur-watermark {
+            filter: blur(6px);
+            pointer-events: none;
+        }
+
+        .screen-protected {
+            transition: filter 0.2s ease;
+        }
+
+        /* Ocultar contenido si la ventana pierde el foco (anti-capturas avanzadas) */
+        body.window-blur .screen-protected {
+            filter: blur(25px) opacity(0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Banner Superior -->
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-md">
+        ⚡ Oferta Lanzamiento en Argentina: Diagnóstico gratis + CV optimizado por solo <span class="underline font-bold">$1.000 ARS</span>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="bg-indigo-600 text-white p-2 rounded-xl">
+                    <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">ResumIA</span>
+            </div>
+            <a href="https://mpago.la/19zWnnD" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition flex items-center space-x-2 shadow-lg shadow-indigo-500/20">
+                <span>Pagar $1.000 ARS</span>
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+        </div>
+    </header>
+
+    <div class="screen-protected">
+        <!-- Hero Section -->
+        <section class="max-w-4xl mx-auto px-4 pt-12 pb-8 text-center">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4">
+                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                Pasa el filtro de selección automático (ATS)
+            </span>
+            <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
+                Supera los filtros de RRHH y consigue <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">más entrevistas</span>
+            </h1>
+            <p class="text-slate-400 text-base sm:text-lg mb-6 max-w-2xl mx-auto">
+                Las empresas rebotan el 75% de los currículums con robots automáticos. Analizamos tu CV gratis y generamos la versión perfecta adaptada a la búsqueda laboral.
+            </p>
+        </section>
+
+        <!-- Formulario e Interacción -->
+        <section class="max-w-4xl mx-auto px-4 pb-12">
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-white">
+                    <i data-lucide="file-text" class="w-5 h-5 text-indigo-400"></i>
+                    Paso 1: Sube tu CV y la oferta laboral
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Carga de Archivo CV -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Tu CV actual (PDF, Word o TXT)</label>
+                        <div class="border-2 border-dashed border-slate-600 hover:border-indigo-500 transition rounded-xl p-6 text-center cursor-pointer bg-slate-900/50" id="dropzone">
+                            <input type="file" id="cvFile" class="hidden" accept=".pdf,.doc,.docx,.txt" onchange="handleFileSelect(event)">
+                            <div id="uploadContent">
+                                <i data-lucide="upload-cloud" class="w-10 h-10 text-slate-400 mx-auto mb-2"></i>
+                                <p class="text-sm text-slate-300 font-medium">Haz clic o arrastra tu archivo aquí</p>
+                                <p class="text-xs text-slate-500 mt-1">Soporta PDF, DOCX, TXT</p>
+                            </div>
+                            <div id="fileInfo" class="hidden flex items-center justify-between bg-indigo-950/40 border border-indigo-500/30 p-3 rounded-lg">
+                                <div class="flex items-center space-x-2 truncate">
+                                    <i data-lucide="file-check" class="w-5 h-5 text-indigo-400 shrink-0"></i>
+                                    <span id="fileName" class="text-sm font-medium text-indigo-200 truncate"></span>
+                                </div>
+                                <button type="button" onclick="removeFile(event)" class="text-slate-400 hover:text-red-400">
+                                    <i data-lucide="x" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Oferta de trabajo -->
+                    <div>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Pega la oferta de trabajo / Puesto</label>
+                        <textarea id="jobOffer" rows="5" class="w-full bg-slate-900/50 border border-slate-600 rounded-xl p-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none" placeholder="Pega aquí los requisitos, tareas o descripción del aviso laboral al que quieres postularte..."></textarea>
+                    </div>
+                </div>
+
+                <button onclick="analizarCV()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-base">
+                    <i data-lucide="cpu" class="w-5 h-5"></i>
+                    <span>Analizar mi CV gratis con Inteligencia Artificial</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Loader -->
+        <section id="loader" class="hidden max-w-xl mx-auto text-center py-12 px-4">
+            <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-500 border-t-transparent mb-4"></div>
+            <h3 class="text-lg font-bold text-white mb-2">Escaneando compatibilidad ATS...</h3>
+            <p class="text-sm text-slate-400">Analizando palabras clave, formato, densidad y estructura laboral.</p>
+        </section>
+
+        <!-- Resultados del Análisis (PÚBLICO) -->
+        <section id="resultados" class="hidden max-w-4xl mx-auto px-4 pb-16">
+            <div class="bg-slate-800/80 border border-indigo-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-8">
+                
+                <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-700 pb-6 gap-4">
+                    <div>
+                        <span class="text-xs uppercase tracking-wider font-semibold text-indigo-400">Diagnóstico Completado</span>
+                        <h2 class="text-2xl font-bold text-white">Resultado de Compatibilidad ATS</h2>
+                    </div>
+                    <div class="bg-amber-500/10 border border-amber-500/30 px-6 py-3 rounded-2xl text-center">
+                        <span class="block text-3xl font-black text-amber-400">62%</span>
+                        <span class="text-xs text-amber-200/80 font-medium">Riesgo de Descarte</span>
+                    </div>
+                </div>
+
+                <!-- Detalles del Diagnóstico -->
+                <div class="grid sm:grid-cols-3 gap-4">
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700">
+                        <div class="flex items-center gap-2 text-red-400 text-sm font-semibold mb-1">
+                            <i data-lucide="alert-circle" class="w-4 h-4"></i> Palabras clave
+                        </div>
+                        <p class="text-xs text-slate-300">Faltan 8 términos técnicos clave requeridos en la publicación.</p>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700">
+                        <div class="flex items-center gap-2 text-amber-400 text-sm font-semibold mb-1">
+                            <i data-lucide="alert-triangle" class="w-4 h-4"></i> Formato de Texto
+                        </div>
+                        <p class="text-xs text-slate-300">Las columnas y tablas actuales bloquean el escáner del filtro.</p>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-700">
+                        <div class="flex items-center gap-2 text-emerald-400 text-sm font-semibold mb-1">
+                            <i data-lucide="check-circle-2" class="w-4 h-4"></i> Estructura
+                        </div>
+                        <p class="text-xs text-slate-300">Experiencia laboral y datos de contacto bien identificados.</p>
+                    </div>
+                </div>
+
+                <!-- Sección del CV Generado (BLOQUEADO HASTA EL PAGO) -->
+                <div class="border border-slate-700 rounded-xl p-6 bg-slate-900/90 relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-lg text-white flex items-center gap-2">
+                            <i data-lucide="file-check-2" class="w-5 h-5 text-indigo-400"></i>
+                            Tu nuevo CV Optimizado ATS
+                        </h3>
+                        <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1 rounded-full border border-slate-700">PDF Listo</span>
+                    </div>
+
+                    <!-- Previsualización difuminada -->
+                    <div class="bg-white text-slate-900 p-6 rounded-lg shadow-inner blur-watermark space-y-3 text-left">
+                        <div class="h-6 bg-slate-800 rounded w-1/3 mb-2"></div>
+                        <div class="h-3 bg-slate-400 rounded w-1/2 mb-4"></div>
+                        <div class="h-2 bg-slate-300 rounded w-full"></div>
+                        <div class="h-2 bg-slate-300 rounded w-5/6"></div>
+                        <div class="h-2 bg-slate-300 rounded w-4/6"></div>
+                        <div class="h-4 bg-slate-700 rounded w-1/4 mt-4"></div>
+                        <div class="h-2 bg-slate-300 rounded w-full"></div>
+                        <div class="h-2 bg-slate-300 rounded w-3/4"></div>
+                    </div>
+
+                    <!-- Overlay de Pago Requerido -->
+                    <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm flex flex-col items-center justify-center p-6 text-center">
+                        <div class="bg-indigo-600/20 border border-indigo-500/40 p-3 rounded-full mb-3 text-indigo-400">
+                            <i data-lucide="lock" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-1">Descarga tu CV Optimizado al 98%</h4>
+                        <p class="text-slate-300 text-sm max-w-md mb-6">
+                            Tu versión adaptada sin errores y lista para enviar a las empresas está generada. Desbloquea la descarga en PDF por un pago único de <strong>$1.000 ARS</strong>.
+                        </p>
+
+                        <a href="https://mpago.la/19zWnnD" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-4 rounded-xl transition shadow-xl shadow-emerald-600/20 flex items-center gap-2 text-lg">
+                            <i data-lucide="download" class="w-5 h-5"></i>
+                            <span>Pagar $1.000 ARS y Descargar PDF</span>
+                        </a>
+                        <p class="text-xs text-slate-400 mt-3 flex items-center gap-1">
+                            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            Pago seguro acreditado al instante por Mercado Pago
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <!-- Script principal e interacción -->
+    <script>
+        lucide.createIcons();
+
+        // Drag & Drop & Archivo
+        const dropzone = document.getElementById('dropzone');
+        const cvFileInput = document.getElementById('cvFile');
+
+        dropzone.addEventListener('click', () => cvFileInput.click());
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0] || (e.dataTransfer && e.dataTransfer.files[0]);
+            if (file) {
+                document.getElementById('fileName').textContent = file.name;
+                document.getElementById('uploadContent').classList.add('hidden');
+                document.getElementById('fileInfo').classList.remove('hidden');
+            }
+        }
+
+        function removeFile(e) {
+            e.stopPropagation();
+            cvFileInput.value = '';
+            document.getElementById('uploadContent').classList.remove('hidden');
+            document.getElementById('fileInfo').classList.add('hidden');
+        }
+
+        // Simulación de Análisis
+        function analizarCV() {
+            const fileInput = document.getElementById('cvFile');
+            const jobOffer = document.getElementById('jobOffer').value.trim();
+
+            if (!fileInput.files.length) {
+                alert('Por favor selecciona o sube tu archivo de CV.');
+                return;
+            }
+            if (!jobOffer) {
+                alert('Por favor pega la descripción de la oferta laboral.');
+                return;
+            }
+
+            document.getElementById('loader').classList.remove('hidden');
+            document.getElementById('resultados').classList.add('hidden');
+
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                document.getElementById('resultados').classList.remove('hidden');
+                document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
+            }, 2500);
+        }
+
+        // Protecciones Anti-Capturas / Copia
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'PrintScreen' || 
+                e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+                (e.ctrlKey && (e.key === 'u' || e.key === 'p' || e.key === 's')) ||
+                (e.metaKey && e.shiftKey && (e.key === '4' || e.key === '3'))) {
+                e.preventDefault();
+                alert('Las funciones de copia y captura están deshabilitadas para proteger los reportes.');
+            }
+        });
+
+        window.addEventListener('blur', () => {
+            document.body.classList.add('window-blur');
+        });
+
+        window.addEventListener('focus', () => {
+            document.body.classList.remove('window-blur');
+        });
+    </script>
+</body>
+          </html>
