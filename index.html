@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Protección básica anti-selección de texto */
+        /* Protección anti-selección de texto */
         body, .no-select {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -15,7 +15,7 @@
             user-select: none;
         }
 
-        /* Capa de Marca de Agua Dinámica sobre el contenido protegido */
+        /* Marca de agua repetida sutil pero efectiva */
         .watermark-container {
             position: relative;
             overflow: hidden;
@@ -25,32 +25,32 @@
             position: absolute;
             inset: 0;
             pointer-events: none;
-            z-index: 20;
+            z-index: 10;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            opacity: 0.18;
+            opacity: 0.12;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #ef4444;
-            transform: rotate(-25deg) scale(1.1);
-            line-height: 4rem;
-            word-spacing: 1.5rem;
+            transform: rotate(-22deg) scale(1.1);
+            line-height: 4.5rem;
+            word-spacing: 2rem;
+            user-select: none;
         }
 
-        /* Efecto de pantalla oculta al perder el foco o presionar teclas de captura */
+        /* Efecto de pantalla oculta al perder el foco o intentar capturas */
         .screen-protected {
             transition: filter 0.15s ease, opacity 0.15s ease;
         }
 
         body.window-blur .screen-protected,
         body.capture-attempt .screen-protected {
-            filter: blur(40px) brightness(0.2) !important;
+            filter: blur(35px) brightness(0.2) !important;
             opacity: 0.05 !important;
         }
 
-        /* Mensaje disuasivo cuando se intenta capturar pantalla */
         #captureWarning {
             display: none;
             position: fixed;
@@ -67,7 +67,7 @@
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased no-select">
 
-    <!-- Aviso emergente de intento de captura -->
+    <!-- Aviso emergente si intenta capturar pantalla -->
     <div id="captureWarning">
         <div class="bg-slate-800 p-8 rounded-2xl border border-red-500/40 max-w-md mx-4 text-center shadow-2xl">
             <i data-lucide="shield-alert" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <button onclick="analizarCV()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-base">
+                <button onclick="analizarCV()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-base cursor-pointer">
                     <i data-lucide="cpu" class="w-5 h-5"></i>
                     <span>Analizar mi CV gratis con Inteligencia Artificial</span>
                 </button>
@@ -166,17 +166,17 @@
             <p class="text-sm text-slate-400">Analizando palabras clave, formato, densidad y estructura laboral.</p>
         </section>
 
-        <!-- RESULTADOS VISIBLES CON MARCA DE AGUA -->
+        <!-- RESULTADOS VISIBLES CON MARCA DE AGUA (POR DEFECTO OCULTO HASTA CLIC) -->
         <section id="resultados" class="hidden max-w-4xl mx-auto px-4 pb-16">
             <div class="bg-slate-800/90 border border-indigo-500/40 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-8 watermark-container">
                 
-                <!-- Capa de Marca de Agua de Protección -->
+                <!-- Marca de agua de protección en pantalla -->
                 <div class="watermark-overlay">
-                    MUESTRA NO DESCARGABLE — MUESTRA NO DESCARGABLE — MUESTRA NO DESCARGABLE — MUESTRA NO DESCARGABLE — RESUMIA ATS — RESUMIA ATS — MUESTRA NO DESCARGABLE — RESUMIA ATS
+                    MUESTRA PROTEGIDA — NO VALIDA PARA DESCARGA DIRECTA — RESUMIA ATS — MUESTRA PROTEGIDA — NO VALIDA PARA DESCARGA DIRECTA — RESUMIA ATS
                 </div>
 
                 <!-- Cabecera del Análisis -->
-                <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-700 pb-6 gap-4 relative z-10">
+                <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-700 pb-6 gap-4 relative z-20">
                     <div>
                         <span class="text-xs uppercase tracking-wider font-semibold text-indigo-400">Diagnóstico Completado</span>
                         <h2 class="text-2xl font-bold text-white">Resultado de Compatibilidad ATS</h2>
@@ -188,20 +188,20 @@
                 </div>
 
                 <!-- Detalles Diagnóstico Completo (Visibles) -->
-                <div class="grid sm:grid-cols-3 gap-4 relative z-10">
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700">
+                <div class="grid sm:grid-cols-3 gap-4 relative z-20">
+                    <div class="bg-slate-900/85 p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-red-400 text-sm font-semibold mb-1">
                             <i data-lucide="alert-circle" class="w-4 h-4"></i> Palabras clave
                         </div>
                         <p class="text-xs text-slate-300">Faltan 8 términos técnicos clave requeridos en la publicación.</p>
                     </div>
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700">
+                    <div class="bg-slate-900/85 p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-amber-400 text-sm font-semibold mb-1">
                             <i data-lucide="alert-triangle" class="w-4 h-4"></i> Formato de Texto
                         </div>
                         <p class="text-xs text-slate-300">Las columnas y tablas actuales bloquean el escáner del filtro.</p>
                     </div>
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700">
+                    <div class="bg-slate-900/85 p-4 rounded-xl border border-slate-700">
                         <div class="flex items-center gap-2 text-emerald-400 text-sm font-semibold mb-1">
                             <i data-lucide="check-circle-2" class="w-4 h-4"></i> Estructura
                         </div>
@@ -209,30 +209,29 @@
                     </div>
                 </div>
 
-                <!-- Previsualización del Contenido del CV Generado (VISIBLE PERO CON MARCA DE AGUA) -->
-                <div class="border border-slate-700 rounded-xl p-6 bg-slate-900/90 relative z-10 space-y-4">
+                <!-- Sugerencias y Estructura Generada por IA -->
+                <div class="border border-slate-700 rounded-xl p-6 bg-slate-900/90 relative z-20 space-y-4">
                     <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                         <h3 class="font-bold text-lg text-white flex items-center gap-2">
                             <i data-lucide="file-check-2" class="w-5 h-5 text-indigo-400"></i>
-                            Sugerencias y Estructura Generada por IA
+                            Sugerencias de Optimización para tu CV
                         </h3>
                         <span class="text-xs bg-indigo-500/20 text-indigo-300 px-3 py-1 rounded-full border border-indigo-500/30 font-semibold">
-                            Vista Previa de Pantalla
+                            Vista Previa en Pantalla
                         </span>
                     </div>
 
-                    <!-- Puntos de mejora detallados -->
                     <div class="text-sm text-slate-300 space-y-3 leading-relaxed">
-                        <p><strong class="text-white">Perfil Profesional Recomendado:</strong> "Profesional enfocado en optimización de procesos con amplia capacidad de análisis, gestión de proyectos y cumplimiento de objetivos según los estándares de la búsqueda."</p>
-                        <p><strong class="text-white">Términos a incorporar en la experiencia:</strong> Métricas cuantitativas, herramientas específicas del rubro y nomenclatura estándar ATS.</p>
+                        <p><strong class="text-white">Perfil Profesional Sugerido:</strong> "Especialista enfocado en cumplimiento de objetivos, con sólida trayectoria y competencias acordes a los requerimientos solicitados."</p>
+                        <p><strong class="text-white">Corrección en Experiencia:</strong> Se recomienda reestructurar los puestos en viñetas simples y añadir terminología específica del sector detectada en la oferta.</p>
                     </div>
                 </div>
 
-                <!-- Bloque Final de Pago y Descarga Oficial -->
-                <div class="bg-gradient-to-r from-indigo-950/80 to-purple-950/80 border border-indigo-500/50 p-6 rounded-2xl text-center relative z-10 shadow-xl">
+                <!-- Bloque de Pago y Descarga Oficial -->
+                <div class="bg-gradient-to-r from-indigo-950/90 to-purple-950/90 border border-indigo-500/50 p-6 rounded-2xl text-center relative z-20 shadow-xl">
                     <h4 class="text-xl font-bold text-white mb-2">Obtén tu CV Optimizado en PDF (Sin Marcas de Agua)</h4>
                     <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
-                        Para descargar el documento PDF listo para postularte sin marcas de agua, pulsa el botón a continuación e inicia tu pago de <strong>$1.000 ARS</strong>.
+                        Para descargar el documento PDF listo para postularte sin marcas de agua ni restricciones, pulsa el botón a continuación e inicia tu pago de <strong>$1.000 ARS</strong>.
                     </p>
 
                     <a href="https://mpago.la/19zWnnD" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-4 rounded-xl transition shadow-xl shadow-emerald-600/30 inline-flex items-center gap-3 text-lg">
@@ -251,9 +250,13 @@
 
     <!-- Scripts de Interacción y Protección -->
     <script>
-        lucide.createIcons();
+        // Inicializar iconos de Lucide de forma segura
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
 
-        // Drag & Drop & Archivo
         const dropzone = document.getElementById('dropzone');
         const cvFileInput = document.getElementById('cvFile');
 
@@ -275,7 +278,7 @@
             document.getElementById('fileInfo').classList.add('hidden');
         }
 
-        // Simulación de Análisis
+        // Simulación de Análisis y visualización garantizada
         function analizarCV() {
             const fileInput = document.getElementById('cvFile');
             const jobOffer = document.getElementById('jobOffer').value.trim();
@@ -289,22 +292,28 @@
                 return;
             }
 
-            document.getElementById('loader').classList.remove('hidden');
-            document.getElementById('resultados').classList.add('hidden');
+            const loader = document.getElementById('loader');
+            const resultados = document.getElementById('resultados');
+
+            loader.classList.remove('hidden');
+            resultados.classList.add('hidden');
 
             setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-                document.getElementById('resultados').classList.remove('hidden');
-                document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
+                loader.classList.add('hidden');
+                resultados.classList.remove('hidden');
+                
+                // Re-inicializar iconos si fuera necesario
+                if (typeof lucide !== 'undefined') {
+                    lucide.createIcons();
+                }
+
+                resultados.scrollIntoView({ behavior: 'smooth' });
             }, 2000);
         }
 
         // --- SISTEMA DE PROTECCIÓN ANTI-CAPTURAS Y COPIA ---
-        
-        // 1. Bloqueo de Clic Derecho
         document.addEventListener('contextmenu', e => e.preventDefault());
 
-        // 2. Detección de atajos de teclado para capturas/impresión/inspección
         const warningEl = document.getElementById('captureWarning');
         
         function triggerProtection() {
@@ -317,13 +326,13 @@
         }
 
         document.addEventListener('keydown', e => {
-            // Tecla PrintScreen / ImpPnt
             if (e.key === 'PrintScreen' || e.keyCode === 44) {
                 e.preventDefault();
-                navigator.clipboard.writeText(''); // Limpia el portapapeles
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText('');
+                }
                 triggerProtection();
             }
-            // Teclas F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+P, Command+Shift+3/4 (Mac)
             if (e.keyCode === 123 || 
                 (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) || 
                 (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'p' || e.key === 'P' || e.key === 's' || e.key === 'S')) ||
@@ -333,7 +342,6 @@
             }
         });
 
-        // 3. Ocultar contenido si la ventana pierde el foco (ej. cambio de ventana o herramientas externas)
         window.addEventListener('blur', () => {
             document.body.classList.add('window-blur');
         });
