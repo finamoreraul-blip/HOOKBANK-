@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Deshabilitar selección de texto */
+        /* Protección anti-selección de texto */
         body, .no-select {
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -40,7 +40,7 @@
             user-select: none;
         }
 
-        /* Efecto de pantalla oculta/blur si intenta capturar o cambia de ventana */
+        /* Efecto de pantalla oculta si se intenta capturar pantalla */
         .screen-protected {
             transition: filter 0.15s ease, opacity 0.15s ease;
         }
@@ -72,7 +72,7 @@
         <div class="bg-slate-800 p-8 rounded-2xl border border-red-500/40 max-w-md mx-4 text-center shadow-2xl">
             <i data-lucide="shield-alert" class="w-16 h-16 text-red-500 mx-auto mb-4"></i>
             <h3 class="text-xl font-bold mb-2">Captura de pantalla bloqueada</h3>
-            <p class="text-sm text-slate-300 mb-6">Para obtener el documento optimizado en formato PDF descargable y sin marcas de agua, realiza la compra oficial.</p>
+            <p class="text-sm text-slate-300 mb-6">Para descargar el documento optimizado en formato PDF descargable y sin marcas de agua, realiza la compra oficial.</p>
             <a href="https://mpago.la/19zWnnD" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-bold px-6 py-3 rounded-xl transition inline-flex items-center gap-2">
                 <span>Descargar PDF por $1.000 ARS</span>
                 <i data-lucide="external-link" class="w-4 h-4"></i>
@@ -82,7 +82,7 @@
 
     <!-- Banner Superior -->
     <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-md">
-        ⚡ Oferta Lanzamiento en Argentina: Diagnóstico gratis + CV optimizado por solo <span class="underline font-bold">$1.000 ARS</span>
+        ⚡ Oferta Lanzamiento en Argentina: Diagnóstico gratis + CV optimizado sin alterar tus datos reales por solo <span class="underline font-bold">$1.000 ARS</span>
     </div>
 
     <!-- Header / Navbar -->
@@ -105,18 +105,18 @@
         <!-- Hero Section -->
         <section class="max-w-4xl mx-auto px-4 pt-12 pb-8 text-center">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4">
-                <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                Pasa el filtro de selección automático (ATS)
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                100% Datos Reales y Honestos · Optimizado para Filtros ATS
             </span>
             <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
-                Supera los filtros de RRHH y consigue <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">más entrevistas</span>
+                Mejoramos la redacción de tu CV <span class="bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">para impactar en RRHH</span>
             </h1>
             <p class="text-slate-400 text-base sm:text-lg mb-6 max-w-2xl mx-auto">
-                Las empresas rebotan el 75% de los currículums con robots automáticos. Analizamos tu CV gratis y generamos la versión perfecta adaptada a la búsqueda laboral.
+                No inventamos experiencia ni mentimos en tus datos. Conservamos tu trayectoria e historial exactos, adaptando el lenguaje y las palabras clave que buscan los selectores.
             </p>
         </section>
 
-        <!-- Formulario de carga -->
+        <!-- Formulario de Carga -->
         <section class="max-w-4xl mx-auto px-4 pb-12">
             <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 sm:p-8 shadow-2xl backdrop-blur-sm">
                 <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-white">
@@ -126,13 +126,13 @@
 
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Tu CV actual (PDF, Word o TXT)</label>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Tu CV actual (PDF, Word, Imagen o TXT)</label>
                         <div class="border-2 border-dashed border-slate-600 hover:border-indigo-500 transition rounded-xl p-6 text-center cursor-pointer bg-slate-900/50" id="dropzone">
-                            <input type="file" id="cvFile" class="hidden" accept=".pdf,.doc,.docx,.txt" onchange="handleFileSelect(event)">
+                            <input type="file" id="cvFile" class="hidden" accept=".pdf,.doc,.docx,.txt,image/*" onchange="handleFileSelect(event)">
                             <div id="uploadContent">
                                 <i data-lucide="upload-cloud" class="w-10 h-10 text-slate-400 mx-auto mb-2"></i>
                                 <p class="text-sm text-slate-300 font-medium">Haz clic o arrastra tu archivo aquí</p>
-                                <p class="text-xs text-slate-500 mt-1">Soporta PDF, DOCX, TXT</p>
+                                <p class="text-xs text-slate-500 mt-1">Conserva tu foto e información real</p>
                             </div>
                             <div id="fileInfo" class="hidden flex items-center justify-between bg-indigo-950/40 border border-indigo-500/30 p-3 rounded-lg">
                                 <div class="flex items-center space-x-2 truncate">
@@ -147,14 +147,14 @@
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-slate-300 mb-2">Pega la oferta de trabajo / Puesto</label>
-                        <textarea id="jobOffer" rows="5" class="w-full bg-slate-900/50 border border-slate-600 rounded-xl p-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none" placeholder="Pega aquí los requisitos, tareas o descripción del aviso laboral al que quieres postularte..."></textarea>
+                        <label class="block text-sm font-medium text-slate-300 mb-2">Pega el aviso o puesto de trabajo</label>
+                        <textarea id="jobOffer" rows="5" class="w-full bg-slate-900/50 border border-slate-600 rounded-xl p-3 text-sm text-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none resize-none" placeholder="Pega aquí los requisitos del puesto para que la IA extraiga las palabras clave que busca RRHH..."></textarea>
                     </div>
                 </div>
 
                 <button onclick="analizarCV()" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-base cursor-pointer">
-                    <i data-lucide="cpu" class="w-5 h-5"></i>
-                    <span>Analizar mi CV gratis con Inteligencia Artificial</span>
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    <span>Optimizar redacción de mi CV con IA (Sin mentir)</span>
                 </button>
             </div>
         </section>
@@ -162,106 +162,89 @@
         <!-- Loader -->
         <section id="loader" class="hidden max-w-xl mx-auto text-center py-12 px-4">
             <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-500 border-t-transparent mb-4"></div>
-            <h3 class="text-lg font-bold text-white mb-2">Procesando y reconstruyendo CV con formato ATS...</h3>
-            <p class="text-sm text-slate-400">Inyectando palabras clave y eliminando errores de maquetación.</p>
+            <h3 class="text-lg font-bold text-white mb-2">Reescribiendo experiencia con vocabulario clave para RRHH...</h3>
+            <p class="text-sm text-slate-400">Manteniendo datos exactos, foto y cronología original.</p>
         </section>
 
-        <!-- RESULTADOS Y CV COMPLETO RECONSTRUIDO -->
+        <!-- RESULTADOS CON LA FOTO Y DATOS REALES MANTENIDOS -->
         <section id="resultados" class="hidden max-w-4xl mx-auto px-4 pb-16">
             <div class="bg-slate-800/90 border border-indigo-500/40 rounded-2xl p-6 sm:p-8 shadow-2xl space-y-8">
                 
                 <!-- Cabecera del Diagnóstico -->
                 <div class="flex flex-col sm:flex-row items-center justify-between border-b border-slate-700 pb-6 gap-4">
                     <div>
-                        <span class="text-xs uppercase tracking-wider font-semibold text-emerald-400">Optimización Realizada</span>
-                        <h2 class="text-2xl font-bold text-white">Compatibilidad Aumentada al 98%</h2>
+                        <span class="text-xs uppercase tracking-wider font-semibold text-emerald-400">Redacción Profesional Aplicada</span>
+                        <h2 class="text-2xl font-bold text-white">Palabras Clave de RRHH Integradas</h2>
                     </div>
                     <div class="bg-emerald-500/10 border border-emerald-500/30 px-6 py-3 rounded-2xl text-center">
-                        <span class="block text-3xl font-black text-emerald-400">98%</span>
-                        <span class="text-xs text-emerald-200/80 font-medium">Aprobado por ATS</span>
+                        <span class="block text-3xl font-black text-emerald-400">96%</span>
+                        <span class="text-xs text-emerald-200/80 font-medium">Alineación con el Aviso</span>
                     </div>
                 </div>
 
-                <!-- HOJA DE CV COMPLETA CON MARCA DE AGUA -->
+                <!-- VISTA PREVIA DEL CV MANTENIENDO FOTO Y DATOS -->
                 <div class="bg-white text-slate-900 rounded-xl p-8 sm:p-12 shadow-2xl watermark-container font-sans text-left leading-relaxed relative">
                     
-                    <!-- MARCA DE AGUA SUPERPUESTA EN LA HOJA -->
+                    <!-- MARCA DE AGUA DE PROTECCIÓN -->
                     <div class="watermark-overlay">
-                        MUESTRA PROTEGIDA — RESUMIA ATS — PAGO REQUERIDO PARA DESCARGA PDF — MUESTRA PROTEGIDA — RESUMIA ATS — PAGO REQUERIDO
+                        MUESTRA PROTEGIDA — RESUMIA ATS — PAGO REQUERIDO PARA DESCARGA PDF — MUESTRA PROTEGIDA — RESUMIA ATS
                     </div>
 
-                    <!-- CONTENIDO COMPLETO DEL CV OPTIMIZADO -->
+                    <!-- ESTRUCTURA DEL CV OPTIMIZADO -->
                     <div class="relative z-10 space-y-6">
-                        <!-- Encabezado / Datos personales -->
-                        <div class="border-b border-slate-300 pb-4">
-                            <h1 class="text-2xl font-bold text-slate-900 tracking-tight" id="cvNombre">CANDIDATO OPTIMIZADO</h1>
-                            <p class="text-sm text-indigo-600 font-semibold mt-1" id="cvPuesto">Especialista Adaptado a la Búsqueda Laboral</p>
-                            <p class="text-xs text-slate-600 mt-2 flex flex-wrap gap-4">
-                                <span>📧 correo@ejemplo.com</span>
-                                <span>📱 +54 9 11 0000-0000</span>
-                                <span>📍 Buenos Aires, Argentina</span>
-                                <span>🔗 linkedin.com/in/perfil</span>
+                        
+                        <!-- Encabezado con Foto Real si existe y Datos Exactos -->
+                        <div class="border-b border-slate-300 pb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <div>
+                                <h1 class="text-2xl font-bold text-slate-900 tracking-tight" id="userRealName">NOMBRE Y APELLIDO DEL USUARIO</h1>
+                                <p class="text-sm text-indigo-700 font-semibold mt-0.5" id="userTargetRole">Título Profesional Adaptado al Puesto</p>
+                                <p class="text-xs text-slate-600 mt-2 flex flex-wrap gap-3">
+                                    <span>📧 contacto@email.com</span>
+                                    <span>📱 +54 9 11 XXXX-XXXX</span>
+                                    <span>📍 Argentina</span>
+                                </p>
+                            </div>
+
+                            <!-- Espacio para la misma foto del usuario -->
+                            <div class="w-20 h-20 rounded-full border-2 border-indigo-600 bg-slate-100 overflow-hidden flex-shrink-0 flex items-center justify-center" id="userPhotoContainer">
+                                <img id="userPhotoPreview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'/><circle cx='12' cy='7' r='4'/></svg>" alt="Foto CV" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
+                        <!-- Perfil Profesional Reformulado sin Inventar -->
+                        <div>
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-800 border-b border-slate-200 pb-1 mb-2">Perfil Profesional Optimizado</h2>
+                            <p class="text-xs text-slate-700 text-justify leading-relaxed">
+                                "Profesional con trayectoria demostrada en las responsabilidades del sector, enfocado en el cumplimiento de metas operativas y la resolución de inconvenientes de manera eficiente. Destacado por la adaptabilidad a entornos exigentes y la clara orientación al trabajo colaborativo según las competencias requeridas para la posición."
                             </p>
                         </div>
 
-                        <!-- Perfil Profesional -->
+                        <!-- Experiencia Reescrita con Verbos Potentes y Palabras de RRHH -->
                         <div>
-                            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-700 border-b border-slate-200 pb-1 mb-2">Perfil Profesional</h2>
-                            <p class="text-xs text-slate-700 text-justify">
-                                Profesional orientado a resultados con sólida experiencia en optimización de procesos y gestión estratégica. Especializado en el cumplimiento de métricas clave y ejecución de proyectos de alto impacto. Altamente adaptable, con capacidad demostrada para integrar herramientas tecnológicas, resolver problemas complejos y colaborar en equipos multidisciplinarios alineados a los requerimientos de la posición.
-                            </p>
-                        </div>
-
-                        <!-- Experiencia Laboral con viñetas ATS -->
-                        <div>
-                            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-700 border-b border-slate-200 pb-1 mb-3">Experiencia Laboral</h2>
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-800 border-b border-slate-200 pb-1 mb-3">Experiencia Laboral (Reformulada)</h2>
                             
                             <div class="space-y-4">
                                 <div>
                                     <div class="flex justify-between items-baseline text-xs">
-                                        <h3 class="font-bold text-slate-900">Especialista de Área / Responsable de Proyectos</h3>
-                                        <span class="text-slate-500 font-medium">2021 - Presente</span>
+                                        <h3 class="font-bold text-slate-900">Cargo Real / Puesto Anterior</h3>
+                                        <span class="text-slate-500 font-medium">Período Real</span>
                                     </div>
-                                    <p class="text-xs font-semibold text-slate-600 mb-1">Empresa Principal S.A.</p>
+                                    <p class="text-xs font-semibold text-slate-600 mb-1">Nombre Real de la Empresa</p>
                                     <ul class="list-disc list-inside text-xs text-slate-700 space-y-1 pl-1">
-                                        <li>Lideró y optimizó flujos de trabajo operativos reduciendo tiempos de entrega en un 25%.</li>
-                                        <li>Implementó metodologías de análisis y control de calidad integrando términos técnicos específicos del sector.</li>
-                                        <li>Gestionó la coordinación entre departamentos garantizando el cumplimiento de objetivos estratégicos.</li>
-                                    </ul>
-                                </div>
-
-                                <div>
-                                    <div class="flex justify-between items-baseline text-xs">
-                                        <h3 class="font-bold text-slate-900">Analista Operativo / Técnico</h3>
-                                        <span class="text-slate-500 font-medium">2018 - 2021</span>
-                                    </div>
-                                    <p class="text-xs font-semibold text-slate-600 mb-1">Servicios Globales SRL</p>
-                                    <ul class="list-disc list-inside text-xs text-slate-700 space-y-1 pl-1">
-                                        <li>Ejecutó tareas de soporte y análisis cuantitativo aumentando la eficiencia operativa del equipo en un 18%.</li>
-                                        <li>Elaboró informes de rendimiento y reportes periódicos para la toma de decisiones gerenciales.</li>
+                                        <li><strong>Logro / Función:</strong> Coordinación activa de tareas diarias optimizando tiempos de respuesta.</li>
+                                        <li><strong>Acción Clave:</strong> Implementación de criterios organizativos para garantizar estándares de calidad exigidos.</li>
+                                        <li><strong>Comunicación:</strong> Gestión de consultas e interacciones resolviendo incidencias de forma prioritaria.</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Educación -->
+                        <!-- Habilidades y Formación Real -->
                         <div>
-                            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-700 border-b border-slate-200 pb-1 mb-2">Educación y Formación</h2>
-                            <div class="flex justify-between items-baseline text-xs">
-                                <div>
-                                    <p class="font-bold text-slate-900">Título Universitario / Técnico Especializado</p>
-                                    <p class="text-slate-600">Universidad / Institución Educativa</p>
-                                </div>
-                                <span class="text-slate-500 font-medium">Graduado</span>
-                            </div>
-                        </div>
-
-                        <!-- Habilidades Clave -->
-                        <div>
-                            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-700 border-b border-slate-200 pb-1 mb-2">Habilidades Técnicas y Competencias (ATS)</h2>
+                            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-800 border-b border-slate-200 pb-1 mb-2">Habilidades Técnicas y Competencias Acreditadas</h2>
                             <p class="text-xs text-slate-700">
-                                <strong>Competencias Técnicas:</strong> Gestión de Proyectos, Análisis de Datos, Optimización de Procesos, Herramientas Digitales Específicas.<br>
-                                <strong>Habilidades Blandas:</strong> Resolución de Problemas, Trabajo en Equipo, Comunicación Efectiva, Adaptabilidad.
+                                <strong>Competencias Técnicas:</strong> Herramientas operativas del área, Gestión eficiente, Organización metodológica.<br>
+                                <strong>Habilidades Blandas Valoradas por RRHH:</strong> Proactividad, Resolución de problemas, Compromiso con el equipo.
                             </p>
                         </div>
                     </div>
@@ -269,9 +252,9 @@
 
                 <!-- BLOQUE DE PAGO Y DESCARGA EN PDF -->
                 <div class="bg-gradient-to-r from-indigo-950/90 to-purple-950/90 border border-indigo-500/50 p-6 rounded-2xl text-center relative z-20 shadow-xl">
-                    <h4 class="text-xl font-bold text-white mb-2">Descarga este CV en formato PDF listo para enviar</h4>
+                    <h4 class="text-xl font-bold text-white mb-2">Descarga este CV optimizado en PDF (Sin Marcas de Agua)</h4>
                     <p class="text-slate-300 text-sm max-w-xl mx-auto mb-6">
-                        Obtén el archivo PDF limpio, maquetado profesionalmente, sin marcas de agua y listo para postularte a las empresas por un pago único de <strong>$1.000 ARS</strong>.
+                        Obtén tu documento PDF listo con la maquetación limpia, tu foto y datos originales por solo <strong>$1.000 ARS</strong>.
                     </p>
 
                     <a href="https://mpago.la/19zWnnD" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-4 rounded-xl transition shadow-xl shadow-emerald-600/30 inline-flex items-center gap-3 text-lg">
@@ -280,7 +263,7 @@
                     </a>
                     <p class="text-xs text-slate-400 mt-3 flex items-center justify-center gap-1">
                         <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
-                        Acreditación e inmediata por Mercado Pago
+                        Acreditación inmediata por Mercado Pago
                     </p>
                 </div>
 
@@ -288,12 +271,10 @@
         </section>
     </div>
 
-    <!-- Scripts de Interacción y Protección -->
+    <!-- Script de Gestión e Interacción -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
         });
 
         const dropzone = document.getElementById('dropzone');
@@ -307,18 +288,27 @@
                 document.getElementById('fileName').textContent = file.name;
                 document.getElementById('uploadContent').classList.add('hidden');
                 document.getElementById('fileInfo').classList.remove('hidden');
-                
-                // Intenta extraer el nombre del archivo subido para personalizar la vista
-                const nameWithoutExt = file.name.split('.')[0].replace(/[-_]/g, ' ');
-                document.getElementById('cvNombre').textContent = nameWithoutExt.toUpperCase();
+
+                // Si sube una imagen directa como foto/CV, la precargamos en el preview
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(evt) {
+                        document.getElementById('userPhotoPreview').src = evt.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                // Colocar el nombre derivado del archivo como referencia
+                const cleanName = file.name.split('.')[0].replace(/[-_]/g, ' ').toUpperCase();
+                document.getElementById('userRealName').textContent = cleanName;
             }
         }
 
         function removeFile(e) {
             e.stopPropagation();
             cvFileInput.value = '';
-            document.getElementById('uploadContent').classList.remove('hidden');
-            document.getElementById('fileInfo').classList.add('hidden');
+            document.getElementById('uploadContent').classList.add('hidden');
+            document.getElementById('fileInfo').classList.hidden = true;
         }
 
         function analizarCV() {
@@ -330,7 +320,7 @@
                 return;
             }
             if (!jobOffer) {
-                alert('Por favor pega la descripción de la oferta laboral.');
+                alert('Por favor pega los requisitos del puesto o la oferta laboral.');
                 return;
             }
 
@@ -344,15 +334,12 @@
                 loader.classList.add('hidden');
                 resultados.classList.remove('hidden');
 
-                if (typeof lucide !== 'undefined') {
-                    lucide.createIcons();
-                }
-
+                if (typeof lucide !== 'undefined') lucide.createIcons();
                 resultados.scrollIntoView({ behavior: 'smooth' });
             }, 2000);
         }
 
-        // --- PROTECCIONES ANTI-COPIA Y ANTI-CAPTURA ---
+        // --- PROTECCIÓN ANTI-CAPTURAS Y COPIA ---
         document.addEventListener('contextmenu', e => e.preventDefault());
 
         const warningEl = document.getElementById('captureWarning');
@@ -369,9 +356,7 @@
         document.addEventListener('keydown', e => {
             if (e.key === 'PrintScreen' || e.keyCode === 44) {
                 e.preventDefault();
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText('');
-                }
+                if (navigator.clipboard) navigator.clipboard.writeText('');
                 triggerProtection();
             }
             if (e.keyCode === 123 || 
@@ -383,13 +368,8 @@
             }
         });
 
-        window.addEventListener('blur', () => {
-            document.body.classList.add('window-blur');
-        });
-
-        window.addEventListener('focus', () => {
-            document.body.classList.remove('window-blur');
-        });
+        window.addEventListener('blur', () => document.body.classList.add('window-blur'));
+        window.addEventListener('focus', () => document.body.classList.remove('window-blur'));
     </script>
 </body>
 </html>
